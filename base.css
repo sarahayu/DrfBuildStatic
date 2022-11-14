@@ -1,0 +1,222 @@
+:root
+{
+    --primary-50: #f3d2b5;
+    --primary-200: #E9AF7C;
+    --primary-300: #E39958;
+    --primary-350: #E4924A;
+    --primary-400: #D58139;
+    --accent-300: #bd6d5e;
+    --accent-400: #B95949;
+    --accent-700: #80372B;
+    --neutral-300: #FBFBFB;
+    --neutral-350: #F1F1F3;
+    --neutral-375: #F4F4F4;
+    --neutral-400: #E5E5E5;
+    --neutral-700: #E3E3E3;
+    --dark-400: #565656;
+    
+    --filter-black: brightness(0) saturate(100%);
+    --filter-neutral-400: invert(97%) sepia(7%) saturate(161%) hue-rotate(307deg) brightness(114%) contrast(80%);
+    --filter-primary-300: invert(85%) sepia(24%) saturate(2150%) hue-rotate(317deg) brightness(93%) contrast(90%);
+
+    font-family: 'futura-pt', 'Helvetica', 'Arial', sans-serif;
+    color: var(--dark-400);
+    font-weight: 500;
+    font-size: 90%;
+}
+
+::selection
+{
+    color: white;
+    background-color: #444;
+}
+
+h1 
+{
+    font-weight: 500;
+}
+
+body
+{
+    min-height: 100vh;
+    min-width: 100%;
+    background-color: var(--neutral-400);
+    display: grid;
+    grid-template-columns: 18rem 1fr;
+    grid-template-rows: min-content 1fr;
+}
+
+button,
+a
+{
+    transition: background-color 0.1s;
+}
+
+nav
+{
+    --nav-item-spacer: 2em;
+    grid-column: 2 / 2;
+    align-self: start;
+    background-color: white;
+    color: var(--primary-400);
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 1.75em;
+    display: flex;
+    gap: 1em;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+table
+{
+    font-size: 0.9rem;
+}
+
+p
+{
+    line-height: 1.5;
+}
+
+.intext-icon
+{
+    height: 1em;
+    display: inline;
+    transform: translateY(0.1em);
+}
+
+.nav-links
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--nav-item-spacer);
+}
+
+.nav-links li
+{
+    display: block;
+}
+
+/* element which contains label, whether it be <a> or <span> */
+.nav-links li > :first-child
+{
+    display: block;
+}
+
+/* only put large padding on first level label links */
+.nav-links > li > :first-child
+{
+    padding: 1.5em 1em;
+}
+
+.nav-links li:hover,
+.nav-links li:focus-within
+{
+    background-color: var(--accent-700);
+    color: white;
+}
+
+.nav-links li:hover > :not(:first-child),
+.nav-links li:focus-within > :not(:first-child)
+{
+    color: var(--accent-700);
+}
+
+.has-dropdown
+{
+    position: relative;
+}
+
+.has-dropdown > :first-child
+{
+    position: relative;
+}
+
+.has-dropdown > :first-child::after
+{
+    content: '';
+    height: 7px;
+    width: 13px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: 0.5em;
+    background-image: url(dropdown.svg);
+}
+
+.has-dropdown > ul
+{
+    font-weight: 600;
+    white-space: nowrap;
+    background-color: var(--neutral-375);
+    visibility: hidden;
+    position: absolute;
+    /* min-width: 150%; */
+    top: 100%;
+    left: 0;
+    box-shadow: 0px 3px 7px -3px #00000040;
+}
+
+.has-dropdown a
+{
+    width: 100%;
+    font-size: 0.8em;
+    padding: 1.8em 1em;
+}
+
+/* is there a better way to do this https://css-tricks.com/change-color-of-svg-on-hover/ */
+.has-dropdown:hover > :first-child::after,
+.has-dropdown:focus-within > :first-child::after
+{
+    filter: var(--filter-black) var(--filter-neutral-400);
+}
+
+.has-dropdown:hover > ul,
+.has-dropdown:focus-within > ul
+{
+    z-index: 1;
+    visibility: visible;
+    transition: visibility 0s 0.2s;
+}
+
+.external-link::after
+{
+    content: '';
+    background-image: url(./external-link.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 0.8em;
+    height: 0.8em;
+    margin-left: 0.2em;
+    filter: var(--filter-primary-300);
+    display: inline-block;
+}
+
+.external-link:hover::after,
+.external-link:focus-visible::after
+{
+    filter: var(--filter-neutral-400);
+}
+
+.accent-card
+{
+    background-color: var(--card-bg, white);
+    border: 1px solid var(--primary-400);
+    padding: var(--card-pd, 2em);
+}
+
+.m-right-1
+{
+    margin-right: 1em;
+}
+
+.g-span-2
+{
+    grid-column: 1 / span 2;
+}
+
+.hover-no-underline:hover
+{
+    text-decoration: none !important;
+}
